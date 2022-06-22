@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container my-2">
+		<h1>Patient Info </h1>
+		<p>
+			Patient Name: <span th:text="${patientName}"></span>
+		</p>
+		<p>
+			Family Name: <span th:text="${patientFamilyName}"></span>
+		</p>
+		<p>
+		    Date of Birth: <span th: text="${patientDateOfBirth}"></span>
+		</p>
+		<p>
+		    Home Address: <span th: text="${patientHomeAddress}"></span>
+		</p>
+		<p>
+		    Phone Number: <span th: text="${patientPhoneNumber}"></span>
+		</p>
+		<p>
+		    Sex: <span th: text="${patientSex}"></span>
+		</p>
+	</div>
+</body>
+</html>

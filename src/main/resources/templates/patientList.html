@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	
+	<div class="row"><h2>Patient List</h2></div>
+	<div class="row">
+		<a href="/patient/add" class="btn btn-primary btn-sm">Add New</a>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Patient Name</th>
+					<th>Family Name</th>
+					<th>Date of Birth</th>
+					<th>Sex</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="patient : ${patients}">
+					<td style="width: 10%" th:text="${patient.id}"></td>
+					<td th:text="${patient.patientName}"></td>
+					<td th:text="${patient.familyName}"></td>
+					<td th:text="${patient.dateOfBirth}"></td>
+					<td th:text="${patient.sex}"></td>
+					<td th:text="${patient.address}"></td>
+					<td th:text="${patient.phone}"></td>
+					<td style="width: 15%" class="text-center">
+						<a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp;|&nbsp;
+						<a th:href="@{/patient/delete/{id}(id=${patient.id})}">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</body>
+</html>
