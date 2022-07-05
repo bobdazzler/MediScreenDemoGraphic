@@ -1,0 +1,35 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<!-- Meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<title>MediScreen App</title>
+</head>
+
+<body>
+	<div class="card-body">
+		<div class="container mt-4">
+			<h2 class="mt-4">
+				Welcome to the MediScreen Application!			
+			</h2>
+			<h3> <a href="/patient/add" class="btn btn-primary btn-sm">Add New Patient</a></h3>
+			<h3> <a href="/patient/list" class="btn btn-primary btn-sm">Patient List</a></h3>
+			<h3> <a href="http://localhost:8082/patHistory/add" class="btn btn-primary btn-sm">Add Note</a></h3>
+			<h3> <a href="http://localhost:8082/patHistory/list/" class="btn btn-primary btn-sm">Doctors Note</a></h3>
+			<br>
+			<h5> Helps in telling the risk level of a patient getting Diabetes</h5>
+		</div>
+	</div>
+</body>
+</html>
