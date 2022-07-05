@@ -5,30 +5,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.springframework.lang.NonNull;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "patient")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class MediScreenPatient {
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	@NonNull
+	 @NotNull(message = "Family Name cannot be null")
 	 @Column(name = "family_name")
 	String familyName;
-	@NonNull
+	 @NotNull(message = "Patient Name cannot be null")
 	 @Column(name = "patient_name")
 	String patientName;
-	@NonNull
+	 @NotNull(message = "Date of Bath cannot be null should follow this format yyyy-mm-dd")
 	 @Column(name = "date_of_birth")
 	String dateOfBirth;
-	@NonNull
+	 @NotNull(message = "Sex cannot be null")
 	 @Column(name = "sex")
 	String sex;
 	 @Column(name = "home_address")
 	String homeAddress;
 	 @Column(name = "phone_number")
 	String phoneNumber;
+	 public MediScreenPatient() {}
 	public Integer getId() {
 		return id;
 	}
@@ -72,5 +76,4 @@ public class MediScreenPatient {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
 }

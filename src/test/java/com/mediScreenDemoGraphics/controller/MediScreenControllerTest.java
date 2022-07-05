@@ -15,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mediScreenDemoGraphics.exception.PatientIdNotFoundException;
 import com.mediScreenDemoGraphics.model.MediScreenPatient;
 import com.mediScreenDemoGraphics.service.MediScreenPatientServiceImpl;
 
@@ -48,7 +50,7 @@ public class MediScreenControllerTest {
 		patient.setDateOfBirth("1967/04/05");
 		patient.setHomeAddress("address of patient");
 		patient.setPhoneNumber("08129549883");
-		ModelAndView modelAndView = mediScreenController.addPatient(patient);
+		ModelAndView modelAndView = mediScreenController.showPatientForm(patient);
 		Assert.assertEquals("addPatient", modelAndView.getViewName());
 	}
 
@@ -64,7 +66,7 @@ public class MediScreenControllerTest {
 		patient.setPhoneNumber("08129549883");
 		when(patientService.savePatient(Mockito.any())).thenReturn(patient);
 		ModelAndView modelAndView = mediScreenController.validatePatient(patient, bindingResult, model);
-		Assert.assertEquals("redirect:/patientList", modelAndView.getViewName());
+		Assert.assertEquals("redirect:/patient/list", modelAndView.getViewName());
 	}
 
 	@Test
@@ -74,7 +76,7 @@ public class MediScreenControllerTest {
 	}
 
 	@Test
-	public void testShowUpdateForm() {
+	public void testShowUpdateForm() throws PatientIdNotFoundException {
 		MediScreenPatient patient = new MediScreenPatient();
 		patient.setPatientName("PatientName");
 		patient.setFamilyName("FamilyName");
@@ -101,7 +103,7 @@ public class MediScreenControllerTest {
 	}
 
 	@Test
-	public void testDeleteUser() {
+	public void testDeleteUser() throws PatientIdNotFoundException {
 		MediScreenPatient patient = new MediScreenPatient();
 		patient.setId(1);
 		patient.setPatientName("PatientName");
@@ -118,7 +120,7 @@ public class MediScreenControllerTest {
 	}
 
 	@Test
-	public void testgetPatientInfoById() {
+	public void testgetPatientInfoById() throws PatientIdNotFoundException {
 		MediScreenPatient patient = new MediScreenPatient();
 		patient.setId(1);
 		patient.setPatientName("PatientName");
@@ -128,9 +130,8 @@ public class MediScreenControllerTest {
 		patient.setHomeAddress("address of patient");
 		patient.setPhoneNumber("08129549883");
 		when(patientService.getPatientById(Mockito.anyInt())).thenReturn(patient);
-		ModelAndView modelAndView = mediScreenController.getPatientInfoById(1, model);
-		Assert.assertEquals("patientInfo", modelAndView.getViewName());
-		Assert.assertEquals("PatientName",patient.getPatientName());
+		MediScreenPatient patientTest = mediScreenController.getPatientInfoById(1);
+		Assert.assertEquals(patientTest.getPatientName(),patient.getPatientName());
 	}
 
 }
